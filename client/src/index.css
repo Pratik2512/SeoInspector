@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  :root {
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --primary: #3366FF;
+  }
+  
+  .text-success {
+    color: var(--success);
+  }
+  
+  .text-warning {
+    color: var(--warning);
+  }
+  
+  .text-danger {
+    color: var(--danger);
+  }
+  
+  .bg-success {
+    background-color: var(--success);
+  }
+  
+  .bg-warning {
+    background-color: var(--warning);
+  }
+  
+  .bg-danger {
+    background-color: var(--danger);
+  }
+  
+  .bg-success\/20 {
+    background-color: rgba(40, 167, 69, 0.2);
+  }
+  
+  .bg-warning\/20 {
+    background-color: rgba(255, 193, 7, 0.2);
+  }
+  
+  .bg-danger\/20 {
+    background-color: rgba(220, 53, 69, 0.2);
+  }
+}
