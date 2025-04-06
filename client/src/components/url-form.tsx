@@ -86,9 +86,9 @@ export default function UrlForm({ onSubmit, initialUrl = "" }: UrlFormProps) {
           </Button>
           <Button
             type="submit"
-            className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition duration-150 ease-in-out flex items-center"
+            className="bg-black hover:bg-black/90 text-white px-6 py-2 rounded-r-md transition duration-150 ease-in-out flex items-center"
           >
-            <span>Analyze</span>
+            <span className="font-medium">Analyze</span>
             <Search className="ml-2 h-4 w-4" />
           </Button>
         </div>
