@@ -24,20 +24,20 @@ export default function TabNavigation({ activeTab, onTabChange }: TabNavigationP
   ];
 
   return (
-    <div className="mb-6 border-b border-neutral-200">
-      <nav className="flex flex-wrap -mb-px">
+    <div className="mb-6 border-b border-neutral-200 overflow-x-auto">
+      <nav className="flex -mb-px min-w-max">
         {tabs.map((tab) => (
           <button
             key={tab.id}
-            className={`mr-2 inline-block p-4 border-b-2 font-medium flex items-center ${
+            className={`mr-2 inline-block p-3 sm:p-4 border-b-2 font-medium flex items-center ${
               activeTab === tab.id
                 ? "border-primary text-primary"
                 : "border-transparent hover:border-neutral-300 text-neutral-600 hover:text-neutral-800"
             }`}
             onClick={() => onTabChange(tab.id)}
           >
-            {tab.icon}
-            <span className="ml-1">{tab.label}</span>
+            <span className="sm:hidden">{tab.icon}</span>
+            <span className="hidden sm:block sm:ml-1">{tab.icon}<span className="ml-1">{tab.label}</span></span>
           </button>
         ))}
       </nav>

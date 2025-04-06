@@ -23,28 +23,30 @@ export default function OverviewTab({ data }: OverviewTabProps) {
   const metrics: MetricCard[] = [
     {
       title: "Meta Tags",
-      value: `${data.metaTagsScore}/100`,
+      value: `${Math.round(data.metaTagsScore * 100) / 100}/100`,
       description: "Essential tags present",
       status: getMetricStatus(data.metaTagsScore),
       percentage: data.metaTagsScore,
     },
     {
       title: "Page Speed",
-      value: data.performanceMetrics.metrics.estimatedLoadTime,
+      value: typeof data.performanceMetrics.metrics.estimatedLoadTime === 'string' ? 
+        parseFloat(data.performanceMetrics.metrics.estimatedLoadTime).toFixed(2) + 's' : 
+        data.performanceMetrics.metrics.estimatedLoadTime,
       description: "Load time",
       status: getMetricStatus(data.performanceScore),
       percentage: data.performanceScore,
     },
     {
       title: "Mobile",
-      value: `${data.mobileScore}/100`,
+      value: `${Math.round(data.mobileScore * 100) / 100}/100`,
       description: "Mobile friendliness",
       status: getMetricStatus(data.mobileScore),
       percentage: data.mobileScore,
     },
     {
       title: "Content",
-      value: `${data.contentScore}/100`,
+      value: `${Math.round(data.contentScore * 100) / 100}/100`,
       description: "Content quality",
       status: getMetricStatus(data.contentScore),
       percentage: data.contentScore,

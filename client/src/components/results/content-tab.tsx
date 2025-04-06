@@ -35,9 +35,16 @@ export default function ContentTab({ data }: ContentTabProps) {
     }
   };
 
+  // Define type for formatted headings
+  interface FormattedHeading {
+    type: string;
+    text: string;
+    count: number;
+  }
+
   // Format heading structure for display
-  const formatHeadings = () => {
-    const formattedHeadings = [];
+  const formatHeadings = (): FormattedHeading[] => {
+    const formattedHeadings: FormattedHeading[] = [];
     for (const [headingType, headingList] of Object.entries(headings.headings)) {
       if (headingList.length > 0) {
         headingList.forEach(heading => {
@@ -83,17 +90,17 @@ export default function ContentTab({ data }: ContentTabProps) {
   const contentMetrics = [
     {
       title: "Word Count",
-      value: contentAnalysis.metrics.wordCount,
+      value: Math.round(contentAnalysis.metrics.wordCount),
       status: contentAnalysis.metrics.wordCount > 500 ? "good" : contentAnalysis.metrics.wordCount > 300 ? "moderate" : "poor"
     },
     {
       title: "Paragraphs",
-      value: contentAnalysis.metrics.paragraphCount,
+      value: Math.round(contentAnalysis.metrics.paragraphCount),
       status: contentAnalysis.metrics.paragraphCount > 5 ? "good" : contentAnalysis.metrics.paragraphCount > 2 ? "moderate" : "poor"
     },
     {
       title: "Readability",
-      value: `${Math.round(contentAnalysis.metrics.readabilityScore)}%`,
+      value: `${parseFloat(contentAnalysis.metrics.readabilityScore.toFixed(2))}%`,
       status: contentAnalysis.metrics.readabilityScore > 70 ? "good" : contentAnalysis.metrics.readabilityScore > 50 ? "moderate" : "poor"
     }
   ];
@@ -203,7 +210,7 @@ export default function ContentTab({ data }: ContentTabProps) {
               <div className="space-y-2 text-sm">
                 <p>{contentAnalysis.metrics.wordCount > 500 ? "✓" : "⚠"} Content length is {contentAnalysis.metrics.wordCount} words {contentAnalysis.metrics.wordCount > 500 ? "(good)" : "(1000+ words recommended)"}</p>
                 <p>{contentAnalysis.metrics.paragraphCount > 5 ? "✓" : "⚠"} {contentAnalysis.metrics.paragraphCount} paragraphs found {contentAnalysis.metrics.paragraphCount < 5 ? "(more recommended)" : ""}</p>
-                <p>{contentAnalysis.metrics.readabilityScore > 70 ? "✓" : "⚠"} Readability score is {Math.round(contentAnalysis.metrics.readabilityScore)}% {contentAnalysis.metrics.readabilityScore < 70 ? "(aim for 70%+)" : ""}</p>
+                <p>{contentAnalysis.metrics.readabilityScore > 70 ? "✓" : "⚠"} Readability score is {parseFloat(contentAnalysis.metrics.readabilityScore.toFixed(2))}% {contentAnalysis.metrics.readabilityScore < 70 ? "(aim for 70%+)" : ""}</p>
                 <p>⚠ Average words per sentence: {contentAnalysis.metrics.avgWordsPerSentence} (15-20 recommended)</p>
               </div>
             </div>
@@ -317,7 +324,7 @@ export default function ContentTab({ data }: ContentTabProps) {
                 <div>
                   <div className="flex justify-between text-xs mb-1">
                     <span className="text-neutral-600">Text Quality</span>
-                    <span className="font-medium text-neutral-800">{Math.round(contentAnalysis.metrics.readabilityScore)}%</span>
+                    <span className="font-medium text-neutral-800">{parseFloat(contentAnalysis.metrics.readabilityScore.toFixed(2))}%</span>
                   </div>
                   <div className="w-full bg-neutral-200 rounded-full h-2">
                     <div 
