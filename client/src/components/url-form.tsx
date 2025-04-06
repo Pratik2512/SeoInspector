@@ -32,6 +32,13 @@ export default function UrlForm({ onSubmit, initialUrl = "" }: UrlFormProps) {
     onSubmit(values.url);
   };
 
+  const handleGoClick = () => {
+    const currentUrl = form.getValues().url;
+    if (formSchema.safeParse({ url: currentUrl }).success) {
+      window.open(currentUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   const clearInput = () => {
     form.reset({ url: "" });
     setUrl("");
@@ -69,13 +76,22 @@ export default function UrlForm({ onSubmit, initialUrl = "" }: UrlFormProps) {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition duration-150 ease-in-out flex items-center"
-        >
-          <span>Analyze</span>
-          <Search className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="flex">
+          <Button 
+            type="button"
+            onClick={handleGoClick}
+            className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-none transition duration-150 ease-in-out"
+          >
+            Go
+          </Button>
+          <Button
+            type="submit"
+            className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition duration-150 ease-in-out flex items-center"
+          >
+            <span>Analyze</span>
+            <Search className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
       </form>
     </Form>
   );

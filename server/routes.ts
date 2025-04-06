@@ -8,7 +8,7 @@ import { z } from "zod";
 import { ZodError } from "zod-validation-error";
 
 // Function to extract and analyze meta tags from a webpage
-async function extractMetaTags(html: string, url: string) {
+function extractMetaTags(html: string, url: string) {
   const $ = cheerio.load(html);
   
   // Extract basic meta information
@@ -395,8 +395,9 @@ function checkMobileFriendliness(html: string) {
   
   // Check for responsive design indicators
   const hasMediaQueries = $('style').text().includes('@media');
-  const hasResponsiveClasses = $('html').attr('class')?.includes('responsive') ||
-                              $('body').attr('class')?.includes('responsive');
+  const htmlClass = $('html').attr('class') || '';
+  const bodyClass = $('body').attr('class') || '';
+  const hasResponsiveClasses = htmlClass.includes('responsive') || bodyClass.includes('responsive');
   
   // Calculate mobile score
   const mobileScore = calculateMobileScore(hasViewport, hasMediaQueries, hasResponsiveClasses);
@@ -526,8 +527,8 @@ async function analyzeSEO(url: string) {
     // Create final analysis object
     const analysis = {
       url,
-      title: metaTags.basic.title.content,
-      description: metaTags.basic.description.content,
+      title: metaTags.basic.title.content || "",
+      description: metaTags.basic.description.content || "",
       seoScore: overallScore,
       metaTagsScore: metaTags.score,
       contentScore: content.score, 
