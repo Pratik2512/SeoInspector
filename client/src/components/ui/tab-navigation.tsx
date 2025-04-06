@@ -37,7 +37,10 @@ export default function TabNavigation({ activeTab, onTabChange }: TabNavigationP
             onClick={() => onTabChange(tab.id)}
           >
             <span className="sm:hidden">{tab.icon}</span>
-            <span className="hidden sm:block sm:ml-1">{tab.icon}<span className="ml-1">{tab.label}</span></span>
+            <span className="hidden sm:flex sm:items-center">
+              {tab.icon}
+              <span className="ml-2">{tab.label}</span>
+            </span>
           </button>
         ))}
       </nav>
