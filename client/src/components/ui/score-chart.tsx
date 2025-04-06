@@ -78,7 +78,7 @@ export default function ScoreChart({
       <canvas ref={chartRef} />
       <div className="absolute inset-0 flex items-center justify-center flex-col">
         <span className={`font-bold ${textSize} text-primary`}>
-          {score}%
+          {score.toFixed(2)}%
         </span>
         {label && <span className="text-sm text-neutral-600">{label}</span>}
       </div>

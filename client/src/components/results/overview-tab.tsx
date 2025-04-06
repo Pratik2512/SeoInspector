@@ -23,7 +23,7 @@ export default function OverviewTab({ data }: OverviewTabProps) {
   const metrics: MetricCard[] = [
     {
       title: "Meta Tags",
-      value: `${Math.round(data.metaTagsScore * 100) / 100}/100`,
+      value: `${data.metaTagsScore.toFixed(2)}/100`,
       description: "Essential tags present",
       status: getMetricStatus(data.metaTagsScore),
       percentage: data.metaTagsScore,
@@ -39,14 +39,14 @@ export default function OverviewTab({ data }: OverviewTabProps) {
     },
     {
       title: "Mobile",
-      value: `${Math.round(data.mobileScore * 100) / 100}/100`,
+      value: `${data.mobileScore.toFixed(2)}/100`,
       description: "Mobile friendliness",
       status: getMetricStatus(data.mobileScore),
       percentage: data.mobileScore,
     },
     {
       title: "Content",
-      value: `${Math.round(data.contentScore * 100) / 100}/100`,
+      value: `${data.contentScore.toFixed(2)}/100`,
       description: "Content quality",
       status: getMetricStatus(data.contentScore),
       percentage: data.contentScore,
@@ -192,7 +192,7 @@ export default function OverviewTab({ data }: OverviewTabProps) {
                       ? "bg-warning" 
                       : "bg-danger"
                   } h-2 rounded-full`} 
-                  style={{ width: `${metric.percentage}%` }}
+                  style={{ width: `${metric.percentage.toFixed(2)}%` }}
                 ></div>
               </div>
             </CardContent>

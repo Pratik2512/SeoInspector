@@ -66,7 +66,7 @@ export default function UrlForm({ onSubmit, initialUrl = "" }: UrlFormProps) {
               {url && (
                 <button
                   type="button"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600 flex items-center justify-center"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600 flex items-center justify-center w-5 h-5"
                   onClick={clearInput}
                   aria-label="Clear input"
                 >

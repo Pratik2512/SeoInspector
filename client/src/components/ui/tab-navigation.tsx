@@ -24,8 +24,8 @@ export default function TabNavigation({ activeTab, onTabChange }: TabNavigationP
   ];
 
   return (
-    <div className="mb-6 border-b border-neutral-200 overflow-x-auto">
-      <nav className="flex -mb-px min-w-max">
+    <div className="mb-6 border-b border-neutral-200">
+      <nav className="flex -mb-px">
         {tabs.map((tab) => (
           <button
             key={tab.id}

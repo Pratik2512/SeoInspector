@@ -162,8 +162,10 @@ export default function ContentTab({ data }: ContentTabProps) {
                 <ul className="space-y-2">
                   {formattedHeadings.length > 0 ? (
                     formattedHeadings.map((heading, index) => (
-                      <li key={index} className={`${getFontSizeForHeadingType(heading.type)} font-bold ${getIndentForHeadingType(heading.type)}`}>
-                        {heading.type.toUpperCase()}: {heading.text} ({heading.count})
+                      <li key={index} className="flex items-center">
+                        <span className={`${getFontSizeForHeadingType(heading.type)} font-bold inline-block min-w-[50px]`}>{heading.type.toUpperCase()}:</span>
+                        <span className="ml-2">{heading.text}</span>
+                        <span className="ml-2 text-neutral-500">({heading.count})</span>
                       </li>
                     ))
                   ) : (
@@ -309,7 +311,7 @@ export default function ContentTab({ data }: ContentTabProps) {
                 <div>
                   <div className="flex justify-between text-xs mb-1">
                     <span className="text-neutral-600">Image Optimization</span>
-                    <span className="font-medium text-neutral-800">{imageMetrics.altTextPercentage}%</span>
+                    <span className="font-medium text-neutral-800">{imageMetrics.altTextPercentage.toFixed(2)}%</span>
                   </div>
                   <div className="w-full bg-neutral-200 rounded-full h-2">
                     <div 
@@ -317,7 +319,7 @@ export default function ContentTab({ data }: ContentTabProps) {
                         imageMetrics.altTextPercentage > 80 ? 'bg-success' : 
                         imageMetrics.altTextPercentage > 50 ? 'bg-warning' : 'bg-danger'
                       } h-2 rounded-full`} 
-                      style={{ width: `${imageMetrics.altTextPercentage}%` }}
+                      style={{ width: `${imageMetrics.altTextPercentage.toFixed(2)}%` }}
                     ></div>
                   </div>
                 </div>
@@ -332,7 +334,7 @@ export default function ContentTab({ data }: ContentTabProps) {
                         contentAnalysis.metrics.readabilityScore > 70 ? 'bg-success' : 
                         contentAnalysis.metrics.readabilityScore > 50 ? 'bg-warning' : 'bg-danger'
                       } h-2 rounded-full`} 
-                      style={{ width: `${contentAnalysis.metrics.readabilityScore}%` }}
+                      style={{ width: `${contentAnalysis.metrics.readabilityScore.toFixed(2)}%` }}
                     ></div>
                   </div>
                 </div>
