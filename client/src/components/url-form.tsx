@@ -19,12 +19,12 @@ interface UrlFormProps {
 }
 
 export default function UrlForm({ onSubmit, initialUrl = "" }: UrlFormProps) {
-  const [url, setUrl] = useState(initialUrl);
+  const [url, setUrl] = useState(initialUrl || "https://");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      url: initialUrl || "",
+      url: initialUrl || "https://",
     },
   });
 
@@ -40,8 +40,8 @@ export default function UrlForm({ onSubmit, initialUrl = "" }: UrlFormProps) {
   };
 
   const clearInput = () => {
-    form.reset({ url: "" });
-    setUrl("");
+    form.reset({ url: "https://" });
+    setUrl("https://");
   };
 
   return (
@@ -55,7 +55,7 @@ export default function UrlForm({ onSubmit, initialUrl = "" }: UrlFormProps) {
               <FormControl>
                 <Input
                   {...field}
-                  placeholder="Enter website URL (e.g., https://example.com)"
+                  placeholder="Enter website domain (e.g., example.com)"
                   className="w-full px-4 py-2 pr-10 border border-neutral-300 rounded-l-md focus:ring-2 focus:ring-primary focus:border-primary"
                   onChange={(e) => {
                     field.onChange(e);
